@@ -1,17 +1,24 @@
 <template>
     <div class="sidebar">
-        <!-- using a flexbox to allow users pick between all clicked history and current clicked -->
         <div class="header">
             History (Show Currently Clicked)
         </div>
-        <div class="clicked">
-
+        <div class="history">
+            <li v-for="coordinate in coordinateHistory" :key="coordinate">
+                {{ coordinate }}
+            </li>
         </div>
     </div>
 </template>
 
 <script>
-
+export default{
+    props: {
+        coordinateHistory: {
+            type: Array,
+        }
+    },
+}
 </script>
 
 <style>
@@ -20,6 +27,8 @@
     color: var(--sidebar-header-text);
     border-radius: 0.5rem;
     width: 25rem;
+    overflow: auto;
+    max-height: calc(100vh - 10.5rem);
 }
 .header{
     background-color: var(--sidebar-header-background); 
@@ -35,6 +44,11 @@
     /* size and placing on page */
     height: 4rem;
     gap: 1rem;
+}
+.history{
+    list-style-type: ordered;
+    overflow-y: auto;
+    flex-grow: 1;
 }
 
 

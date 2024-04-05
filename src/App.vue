@@ -4,8 +4,13 @@
       <img src="./assets/lightLogo.png">
     </div>
   <div id="container">
-    <ChessBoard/>
-    <SideBar />
+    <ChessBoard
+
+      @emitHistory="addHistory"
+    />
+    <SideBar 
+      :coordinateHistory="coordinateHistory"
+    />
   </div>
 </div>
 </template>
@@ -19,6 +24,17 @@ export default {
   components: {
     ChessBoard,
     SideBar
+  },
+  data(){
+    return {
+      coordinateHistory: [],
+    }
+  },
+  methods:{
+    addHistory(coordinate){
+      this.coordinateHistory.push(coordinate);
+      console.log(this.coordinateHistory);
+    }
   }
 }
 
@@ -61,6 +77,8 @@ body {
   justify-content: center;
   flex-direction: row;
   gap: 2rem;
+  max-height: 100vh;
+  overflow: hidden;
 }
 
 .logo{

@@ -8,7 +8,10 @@
     props: {
       isLight: {
         type: Boolean,
-      }
+      },
+      coordinate: {
+        type: String,
+      },
     },
     data(){
       return {
@@ -18,6 +21,7 @@
     methods: {
       highlightSquare(){
         this.isClicked = !this.isClicked;
+        this.$emit('square-clicked', this.coordinate);
       }
     },
   }

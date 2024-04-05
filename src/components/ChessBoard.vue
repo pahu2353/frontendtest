@@ -4,7 +4,10 @@
             <BoardSquares 
             v-for="file in 8" 
             :key="'file' + file" class="file"
-            :isLight="(rank + file) % 2 == 0"/>
+            :isLight="(rank + file) % 2 == 0"
+            :coordinate="getCoordinate(file, rank)"
+            @square-clicked="emitHistory"
+            />
         </div>
     </div>
   </template>
@@ -15,6 +18,23 @@
   export default {
     components: {
       BoardSquares
+    },
+    methods: {
+      getCoordinate(file, rank){
+
+        // file: a to h
+        const fileLetter = String.fromCharCode(96 + file); // one before 'a' (97)
+
+        // rank: 1 to 8
+        const rankNumber = 9 - rank;
+
+        const coordinate = fileLetter + rankNumber;
+
+        return coordinate;
+      },
+      emitHistory(coordinate){
+        this.$emit('emitHistory', coordinate);
+      }
     }
   }
   </script>
