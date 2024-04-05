@@ -49,10 +49,14 @@ export default {
 </script>
 
 <style>
-body {
+html, body {
   /* allow #app to fill entire viewport */
   margin: 0;
   padding: 0;
+
+  /* for fixing ios issues */
+  height: 100vh;
+  width: 100vw;
 }
 
 #app {

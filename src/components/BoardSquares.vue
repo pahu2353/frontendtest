@@ -1,9 +1,15 @@
 <template>
     <div :class="['square', isLight ? 'light' : 'dark', isClicked ? 'clicked' : '']" @click="highlightSquare">
+        <div class="rankLabels" :class="[ isLight ? 'darkLabel' : 'lightLabel' ]" v-if="coordinate[0] === 'a'">
+            {{ coordinate[1] }}
+        </div>
+        <div class="fileLabels" :class="[ isLight ? 'darkLabel' : 'lightLabel' ]" v-if="coordinate[1] === '1'">
+            {{  coordinate[0] }}
+        </div>
     </div>
   </template>
   
-  <script>
+  <script>  
   export default {
     props: {
       isLight: {
@@ -32,9 +38,34 @@
     /* temporary values to size the squares */
     width: 6vw; 
     height: 6vw; 
+    position: relative;
+  }
+
+  /* colours for board */
+  .rankLabels {
+    font-weight: 700;
+    position: absolute;
+    top: 0.3rem;
+    left: 0.3rem;
+    font-size: 1vw;
+  }
+
+  .fileLabels{
+    font-weight: 700;
+    position: absolute;
+    bottom: 0.3rem;
+    right: 0.3rem;
+    font-size: 1vw;
+  }
+
+  .lightLabel {
+    color: var(--light-square);
+  }
+
+  .darkLabel {
+    color: var(--dark-square);
   }
   
-  /* colours for board */
   .light {
     background-color: var(--light-square);
   }
@@ -56,6 +87,9 @@
       width: 11vw;
       height: 11vw;
     }
+    .fileLabels, .rankLabels {
+        font-size: 3vw;
+    }
   }
 
   @media (min-width: 600px){
@@ -63,12 +97,18 @@
       width: 10vw;
       height: 10vw;
     }
+    .fileLabels, .rankLabels {
+        font-size: 2.5vw;
+    }
   }
 
   @media (min-width: 768px){
     .square {
       width: 8vw;
       height: 8vw;
+    }
+    .fileLabels, .rankLabels {
+        font-size: 1.5vw;
     }
   }
 
