@@ -2,7 +2,7 @@
     <div class="sidebar">
         <!-- using a flexbox to allow users pick between all clicked history and current clicked -->
         <div class="header">
-            History
+            History (Show Currently Clicked)
         </div>
         <div class="clicked">
 
@@ -19,7 +19,7 @@
     background-color: var(--sidebar-background);
     color: var(--sidebar-header-text);
     border-radius: 0.5rem;
-    width: 20rem;
+    width: 25rem;
 }
 .header{
     background-color: var(--sidebar-header-background); 

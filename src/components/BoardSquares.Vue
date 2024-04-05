@@ -1,5 +1,5 @@
 <template>
-    <div :class="['square', isLight ? 'light' : 'dark']">
+    <div :class="['square', isLight ? 'light' : 'dark', isClicked ? 'clicked' : '']" @click="highlightSquare">
     </div>
   </template>
   
@@ -9,15 +9,25 @@
       isLight: {
         type: Boolean,
       }
-    }
+    },
+    data(){
+      return {
+        isClicked: false,
+      };
+    },
+    methods: {
+      highlightSquare(){
+        this.isClicked = !this.isClicked;
+      }
+    },
   }
   </script>
   
   <style>
   .square {
     /* temporary values to size the squares */
-    width: 9vw; 
-    height: 9vw; 
+    width: 6vw; 
+    height: 6vw; 
   }
   
   .light {
@@ -26,5 +36,13 @@
   
   .dark {
     background-color: var(--dark-square);
+  }
+
+  .light.clicked {
+    background-color: var(--highlight-light-square);
+  }
+
+  .dark.clicked {
+    background-color: var(--highlight-dark-square);
   }
   </style>

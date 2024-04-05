@@ -42,7 +42,8 @@ body {
   --background-colour: #302E2B;
   --dark-square: #739552;
   --light-square: #EBECD0;
-  --highlight: #FFFF33;
+  --highlight-dark-square: #d36c51;
+  --highlight-light-square: #ec7d6a;
   --sidebar-header-background: #F1F1F1;
   --sidebar-header-text: #666564;
   --sidebar-background: #FFFFFF;
@@ -55,19 +56,19 @@ body {
 
 #container{
   /* to handle requirements 2 and 3, responsive positioning */
-  margin: 2rem;
+  margin: 1.5rem 2rem 2rem; /* top, right, left */
   display: flex;
+  justify-content: center;
   flex-direction: row;
   gap: 2rem;
 }
 
 .logo{
   /* preliminary css styling for the logo */
-  padding: 10px;
+  padding: 1.5rem 2rem 0; 
 }
 
 .logo img {
-
   /* temporary values, to be changed later */
   width: 183.4px;
   height: 50.8px;
