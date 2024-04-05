@@ -34,6 +34,7 @@
     height: 6vw; 
   }
   
+  /* colours for board */
   .light {
     background-color: var(--light-square);
   }
