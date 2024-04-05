@@ -1,12 +1,22 @@
 <template>
     <div class="sidebar">
         <div class="header">
-            History (Show Currently Clicked)
+            <p>History (<span class="toggle" @click="toggleCurrent">{{ showCurrent ? 'Hide Currently Clicked' : 'Show Currently Clicked' }}</span>)</p>
         </div>
-        <div class="history">
-            <li v-for="coordinate in coordinateHistory" :key="coordinate">
-                {{ coordinate }}
-            </li>
+
+        <div class="body">
+            <div class="history">
+                <h4>History:</h4>
+                <li v-for="coordinate in coordinateHistory" :key="coordinate">
+                    {{ coordinate }}
+                </li>
+            </div>
+            <div class="current" v-if="showCurrent">
+                <h4>Currently Clicked:</h4>
+                <li v-for="coordinate in Array.from(currentlyClicked)" :key="coordinate">
+                    {{ coordinate }}
+                </li>
+            </div>
         </div>
     </div>
 </template>
@@ -16,8 +26,22 @@ export default{
     props: {
         coordinateHistory: {
             type: Array,
+        },
+        currentlyClicked: {
+            type: Set,
+            default: () => new Set(), // default empty set value to prevent issues with iterating through undefined
         }
     },
+    data(){
+        return{
+            showCurrent: false,
+        }
+    },
+    methods: {
+        toggleCurrent(){
+            this.showCurrent = !this.showCurrent;
+        }
+    }
 }
 </script>
 
@@ -28,8 +52,9 @@ export default{
     border-radius: 0.5rem;
     width: 25rem;
     overflow: auto;
-    max-height: calc(100vh - 10.5rem);
+    height: 100%;
 }
+
 .header{
     background-color: var(--sidebar-header-background); 
     border-radius: 0.5rem 0.5rem 0 0;
@@ -45,11 +70,23 @@ export default{
     height: 4rem;
     gap: 1rem;
 }
-.history{
-    list-style-type: ordered;
-    overflow-y: auto;
-    flex-grow: 1;
+
+.body{
+    display: flex;
+    flex-direction: row;
+    text-align: center; 
+    height: 100%;
 }
 
+.history, .current {
+    list-style-type: ordered;
+    flex-grow: 1;
+    height: 100%;
+}
+
+.toggle:hover {
+    cursor: pointer;
+    color: var(--background-colour);
+}
 
 </style>

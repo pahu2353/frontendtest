@@ -10,6 +10,7 @@
     />
     <SideBar 
       :coordinateHistory="coordinateHistory"
+      :currentlyClicked="currentlyClicked"
     />
   </div>
 </div>
@@ -18,7 +19,7 @@
 <script>
 import ChessBoard from './components/ChessBoard.vue';
 import SideBar from './components/SideBar.vue';
-
+1
 export default {
   name: 'App',
   components: {
@@ -28,12 +29,19 @@ export default {
   data(){
     return {
       coordinateHistory: [],
+      currentlyClicked: new Set(),
     }
   },
   methods:{
+
+    // adds history to coordinateHistory and also inserts or removes from the currentlyClicked set
     addHistory(coordinate){
       this.coordinateHistory.push(coordinate);
-      console.log(this.coordinateHistory);
+      if (this.currentlyClicked.has(coordinate)){
+        this.currentlyClicked.delete(coordinate);
+      } else {
+        this.currentlyClicked.add(coordinate);
+      }
     }
   }
 }
@@ -72,13 +80,12 @@ body {
 
 #container{
   /* to handle requirements 2 and 3, responsive positioning */
-  margin: 1.5rem 2rem 2rem; /* top, right, left */
+  margin: 1.5rem 2rem 2rem 2rem; /* top, right, bottom, left */
   display: flex;
   justify-content: center;
   flex-direction: row;
   gap: 2rem;
-  max-height: 100vh;
-  overflow: hidden;
+  height: calc(100vh - 12rem);
 }
 
 .logo{
@@ -87,15 +94,22 @@ body {
 }
 
 .logo img {
-  /* temporary values, to be changed later */
+  /* temporary values, could be changed later */
   width: 183.4px;
   height: 50.8px;
 }
 
 /* breakpoint for switching sidebar to below, inspired by https://www.chess.com/analysis */
 @media (max-width: 960px) {
-  #app {
+  #container {
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 8rem);
+  }
+
+  .sidebar, .chessboard {
+    width: 100%;
   }
 }
 

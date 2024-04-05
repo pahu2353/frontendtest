@@ -49,4 +49,48 @@
   .dark.clicked {
     background-color: var(--highlight-dark-square);
   }
+
+  @media (max-width: 600px){
+    .square {
+      width: 11vw;
+      height: 11vw;
+    }
+  }
+
+  @media (min-width: 600px){
+    .square {
+      width: 10vw;
+      height: 10vw;
+    }
+  }
+
+  @media (min-width: 768px){
+    .square {
+      width: 8vw;
+      height: 8vw;
+    }
+  }
+
+  @media (min-width: 992px){
+    .square {
+      width: 6.5vw;
+      height: 6.5vw;
+    }
+  }
+
+  /* laptops (default) */
+  @media (min-width: 1200px){
+    .square {
+      width: 6vw;
+      height: 6vw;
+    }
+  }
+
+  /* desktop displays */
+  @media (min-width: 1920px) {
+  .square {
+      width: 5.5vw;
+      height: 5.5vw;
+    }
+  }
   </style>
