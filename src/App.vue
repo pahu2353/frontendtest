@@ -36,7 +36,9 @@ export default {
 
     // adds history to coordinateHistory and also inserts or removes from the currentlyClicked set
     addHistory(coordinate){
-      this.coordinateHistory.push(coordinate);
+      if (!this.currentlyClicked.has(coordinate)){
+        this.coordinateHistory.push(coordinate); // only add it to the history if it's highlighting, not if unhighlighting
+      }
       if (this.currentlyClicked.has(coordinate)){
         this.currentlyClicked.delete(coordinate);
       } else {
