@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <div id="logo">
-      <img src="./assets/darkLogo.png">
+    <div class="logo">
+      <img src="./assets/lightLogo.png">
     </div>
   <div id="container">
     <ChessBoard/>
@@ -25,9 +25,15 @@ export default {
 </script>
 
 <style>
+body {
+  /* allow #app to fill entire viewport */
+  margin: 0;
+  padding: 0;
+}
 
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 1rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
@@ -36,23 +42,31 @@ export default {
   --background-colour: #302E2B;
   --dark-square: #739552;
   --light-square: #EBECD0;
-  --highlight: #ffff33;
-  --sidebar-header: #666564;
-  --sidebar-background: #ffffff;
+  --highlight: #FFFF33;
+  --sidebar-header-background: #F1F1F1;
+  --sidebar-header-text: #666564;
+  --sidebar-background: #FFFFFF;
+
+  /* sized background-color to the viewport */
+  min-height: 100vh;
+  min-width: 100vw;
+  background-color: var(--background-colour);
 }
 
 #container{
   /* to handle requirements 2 and 3, responsive positioning */
+  margin: 2rem;
   display: flex;
   flex-direction: row;
+  gap: 2rem;
 }
 
-#logo{
+.logo{
   /* preliminary css styling for the logo */
   padding: 10px;
 }
 
-#logo img {
+.logo img {
 
   /* temporary values, to be changed later */
   width: 183.4px;
