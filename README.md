@@ -15,7 +15,7 @@ We were tasked to:
 7. Display the information collected from step 6 in the sidebar.
 
 ## Design Notes
-I wanted to replicate the design of a chess.com board as much as possible; thus, the colours/styling, the spacing, and the design elements were all themed in a chess.com-esque style. 
+I wanted to replicate the design of a chess.com board as much as possible; thus, the colours/styling, the spacing, and the design elements were all themed in a chess.com-esque style. I originally used a .png of the chess.com logo, but I created my own "chessdotcom" logo for the final product to avoid copyright infringement.
 
 Additional features (beyond the application requirements) that were added were:
 - The ability to unhighlight previously highlighted squares by clicking on them again
