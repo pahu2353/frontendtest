@@ -5,12 +5,15 @@
         </div>
 
         <div class="body">
+            <!-- div to display all previously highlighted coordinates -->
             <div class="history">
                 <h4>History:</h4>
                 <li v-for="coordinate in coordinateHistory" :key="coordinate">
                     {{ coordinate }}
                 </li>
             </div>
+
+            <!-- div to display currently highlighted coordinates -->
             <div class="current" v-if="showCurrent">
                 <h4>Currently Clicked:</h4>
                 <li v-for="coordinate in Array.from(currentlyClicked)" :key="coordinate">

@@ -1,5 +1,7 @@
 <template>
+    <!-- conditional styling based on square colour -->
     <div :class="['square', isLight ? 'light' : 'dark', isClicked ? 'clicked' : '']" @click="highlightSquare">
+        <!-- labels should be opposite of square; light for dark squares and dark for light squares -->
         <div class="rankLabels" :class="[ isLight ? 'darkLabel' : 'lightLabel' ]" v-if="coordinate[0] === 'a'">
             {{ coordinate[1] }}
         </div>
@@ -27,7 +29,7 @@
     methods: {
       highlightSquare(){
         this.isClicked = !this.isClicked;
-        this.$emit('square-clicked', this.coordinate);
+        this.$emit('square-clicked', this.coordinate); // emits when clicked. square-clicked -> ChessBoard.vue -> App.vue -> SideBar.vue
       }
     },
   }
@@ -39,9 +41,9 @@
     width: 6vw; 
     height: 6vw; 
     position: relative;
-  }
+  } 
 
-  /* colours for board */
+  /* colours for board and all its states */
   .rankLabels {
     font-weight: 700;
     position: absolute;
@@ -82,6 +84,8 @@
     background-color: var(--highlight-dark-square);
   }
 
+
+  /* media queries for responsiveness */
   @media (max-width: 600px){
     .square {
       width: 11vw;
@@ -92,7 +96,15 @@
     }
   }
 
-  @media (min-width: 600px){
+  /* landscape orientation for phones */
+  @media (min-width: 600px) and (max-height: 880px){
+    .square {
+      width: 5vh;
+      height: 5vh;
+    }
+  }
+
+  @media (min-width: 600px) and (min-height: 880px){
     .square {
       width: 10vw;
       height: 10vw;
@@ -102,7 +114,8 @@
     }
   }
 
-  @media (min-width: 768px){
+
+  @media (min-width: 768px) and (min-height: 880px){
     .square {
       width: 8vw;
       height: 8vw;
@@ -119,13 +132,15 @@
     }
   }
 
-  /* laptops (default) */
-  @media (min-width: 1200px){
+  /* some really wide laptops have really short heights. Using vh might be more appropriate there */
+  @media (min-width: 1200px) and (max-height: 880px){
     .square {
-      width: 6vw;
-      height: 6vw;
+      width: 10vh;
+      height: 10vh;
     }
   }
+
+  /* a media query for min-width 1200px and max-height 880px here is covered by default */
 
   /* desktop displays */
   @media (min-width: 1920px) {

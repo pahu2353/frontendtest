@@ -28,10 +28,14 @@
         // rank: 1 to 8
         const rankNumber = 9 - rank;
 
+        // e.g., a3, b6, h4
         const coordinate = fileLetter + rankNumber;
 
         return coordinate;
       },
+
+      // emits clicked coordinate to App.vue when BoardSquares.vue's 'square-clicked' is triggered
+      // Allows App.vue to store all data and pass it as prop to SideBar.vue
       emitHistory(coordinate){
         this.$emit('emitHistory', coordinate);
       }

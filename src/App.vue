@@ -1,11 +1,10 @@
 <template>
   <div id="app">
     <div class="logo">
-      <img src="./assets/lightLogo.png">
+      <img src="./assets/noCopyrightLogo.png">
     </div>
   <div id="container">
     <ChessBoard
-
       @emitHistory="addHistory"
     />
     <SideBar 
@@ -19,7 +18,7 @@
 <script>
 import ChessBoard from './components/ChessBoard.vue';
 import SideBar from './components/SideBar.vue';
-1
+
 export default {
   name: 'App',
   components: {
