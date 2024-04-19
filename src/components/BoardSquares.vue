@@ -11,27 +11,24 @@
     </div>
   </template>
   
-  <script>  
-  export default {
-    props: {
-      isLight: {
-        type: Boolean,
-      },
-      coordinate: {
-        type: String,
-      },
+  <script setup> 
+  import { ref, defineProps, defineEmits } from 'vue';
+  const emits = defineEmits(['square-clicked']);
+
+  const props = defineProps({
+    isLight: {
+      type: Boolean,
     },
-    data(){
-      return {
-        isClicked: false,
-      };
+    coordinate: {
+      type: String,
     },
-    methods: {
-      highlightSquare(){
-        this.isClicked = !this.isClicked;
-        this.$emit('square-clicked', this.coordinate); // emits when clicked. square-clicked -> ChessBoard.vue -> App.vue -> SideBar.vue
-      }
-    },
+  })
+
+  let isClicked = ref(false);
+
+  const highlightSquare = () => {
+    isClicked.value = !isClicked.value;
+    emits('square-clicked', props.coordinate);
   }
   </script>
   

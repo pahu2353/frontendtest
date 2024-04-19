@@ -15,36 +15,23 @@
 </div>
 </template>
 
-<script>
+<script setup> // script setup makes it much more concise
 import ChessBoard from './components/ChessBoard.vue';
 import SideBar from './components/SideBar.vue';
 
-export default {
-  name: 'App',
-  components: {
-    ChessBoard,
-    SideBar
-  },
-  data(){
-    return {
-      coordinateHistory: [],
-      currentlyClicked: new Set(),
-    }
-  },
-  methods:{
+import { ref } from 'vue';
 
-    // adds history to coordinateHistory and also inserts or removes from the currentlyClicked set
-    addHistory(coordinate){
-      if (!this.currentlyClicked.has(coordinate)){
-        this.coordinateHistory.push(coordinate); // only add it to the history if it's highlighting, not if unhighlighting
-      }
-      if (this.currentlyClicked.has(coordinate)){
-        this.currentlyClicked.delete(coordinate);
+const coordinateHistory = ref([]);
+const currentlyClicked = ref(new Set());
+
+// adds history to coordinateHistory and also inserts/removes form the currentlyClicked set
+const addHistory = (coordinate) => {
+  if (currentlyClicked.value.has(coordinate)){
+        currentlyClicked.value.delete(coordinate);
       } else {
-        this.currentlyClicked.add(coordinate);
+        currentlyClicked.value.add(coordinate);
+        coordinateHistory.value.push(coordinate); // only add it to the history if it's highlighting, not if unhighlighting
       }
-    }
-  }
 }
 
 </script>

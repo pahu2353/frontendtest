@@ -12,34 +12,27 @@
     </div>
   </template>
   
-  <script>
+  <script setup>
   import BoardSquares from './BoardSquares.vue';
-  
-  export default {
-    components: {
-      BoardSquares
-    },
-    methods: {
-      getCoordinate(file, rank){
+  import { defineEmits } from 'vue';
 
-        // file: a to h
-        const fileLetter = String.fromCharCode(96 + file); // one before 'a' (97)
+  const emits = defineEmits(['emitHistory']);
 
-        // rank: 1 to 8
-        const rankNumber = 9 - rank;
+  const getCoordinate = (file, rank) => {
+      // file: a to h
+       const fileLetter = String.fromCharCode(96 + file); // one before 'a' (97)
 
-        // e.g., a3, b6, h4
-        const coordinate = fileLetter + rankNumber;
+      // rank: 1 to 8
+      const rankNumber = 9 - rank;
 
-        return coordinate;
-      },
+      // e.g., a3, b6, h4
+      const coordinate = fileLetter + rankNumber;
 
-      // emits clicked coordinate to App.vue when BoardSquares.vue's 'square-clicked' is triggered
-      // Allows App.vue to store all data and pass it as prop to SideBar.vue
-      emitHistory(coordinate){
-        this.$emit('emitHistory', coordinate);
-      }
-    }
+      return coordinate;
+  }
+
+  const emitHistory = (coordinate) => {
+    emits('emitHistory', coordinate);
   }
   </script>
   

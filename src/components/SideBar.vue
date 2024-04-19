@@ -24,27 +24,23 @@
     </div>
 </template>
 
-<script>
-export default{
-    props: {
-        coordinateHistory: {
-            type: Array,
-        },
-        currentlyClicked: {
-            type: Set,
-            default: () => new Set(), // default empty set value to prevent issues with iterating through undefined
-        }
+<script setup>
+import  { ref, defineProps } from 'vue';
+
+defineProps({
+    coordinateHistory: {
+        type: Array,
     },
-    data(){
-        return{
-            showCurrent: false,
-        }
-    },
-    methods: {
-        toggleCurrent(){
-            this.showCurrent = !this.showCurrent;
-        }
+    currentlyClicked: {
+        type: Set,
+        default: () => new Set(), // default empty set value to prevent issues with iterating through undefined
     }
+})
+
+let showCurrent = ref(false); // toggle for the current highlighted squares
+
+const toggleCurrent = () => {
+    showCurrent.value = !showCurrent.value;
 }
 </script>
 
